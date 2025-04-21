@@ -1,5 +1,7 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
+import Pages.Home;
 import Pages.Login_f;
 
 public class App {
@@ -12,6 +14,9 @@ public class App {
         Login_f loginPage = new Login_f(driver);
         loginPage.loginWithDefaultCredentials(); 
 
+        Home homePage = new Home(driver);
+        homePage.openMultipleAppointments();
+        
         driver.quit();
     }
 }
