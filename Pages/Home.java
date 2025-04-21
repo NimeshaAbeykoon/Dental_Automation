@@ -33,13 +33,14 @@ public class Home {
 
 
         // 2. Type in search
-        WebElement element2 = wait.until(ExpectedConditions.visibilityOfElementLocated(
-            By.xpath("//*[@id=\\\"mCSB_2_container\\\"]/input")
+        WebElement searchInput = wait.until(ExpectedConditions.visibilityOfElementLocated(
+            By.xpath("//*[@id='mCSB_2_container']/input")
         ));
 
-       ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(searchField)).sendKeys("multiple appointments");
+        searchInput.clear();
 
+        searchInput.sendKeys("multiple appointment");
+        
         // 3. Click on "Multiple Appointments" option
         wait.until(ExpectedConditions.elementToBeClickable(multipleAppointmentsOption)).click();
 
