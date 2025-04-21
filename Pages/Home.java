@@ -1,7 +1,9 @@
 package Pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
@@ -11,20 +13,31 @@ public class Home {
     WebDriverWait wait;
 
     // Replace these with your actual XPaths
-    By menuIcon = By.xpath("//*[@id=\"sideiconmenu\"]/li[3]/a");
+    By menuIcon = By.xpath("/html/body/div[2]/div[4]/div[2]/ul/li[3]/a/img");
     By searchField = By.xpath("//*[@id=\"mCSB_2_container\"]/input");
     By multipleAppointmentsOption = By.xpath("//*[@id=\"mCSB_2_container\"]/div[1]/ul/li[2]/ul/li[1]");
 
     public Home(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(30));
     }
 
     public void openMultipleAppointments() {
         // 1. Click menu icon
-        wait.until(ExpectedConditions.elementToBeClickable(menuIcon)).click();
+         WebElement element1 = wait.until(ExpectedConditions.visibilityOfElementLocated(
+                By.xpath("//li[@data-target='#CHANNELLING_1']/a")
+        ));
+
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element1);
+
+
 
         // 2. Type in search
+        WebElement element2 = wait.until(ExpectedConditions.visibilityOfElementLocated(
+            By.xpath("//*[@id=\\\"mCSB_2_container\\\"]/input")
+        ));
+
+       ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
         wait.until(ExpectedConditions.visibilityOfElementLocated(searchField)).sendKeys("multiple appointments");
 
         // 3. Click on "Multiple Appointments" option
